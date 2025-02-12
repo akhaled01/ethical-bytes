@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Brain, BookOpen, GamepadIcon, Users, Home } from 'lucide-react';
-import Logo from './Logo';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Brain, BookOpen, GamepadIcon, Users, Home } from "lucide-react";
+import Logo from "./Logo";
 
 function Navbar() {
   return (
@@ -12,7 +12,7 @@ function Navbar() {
             <Logo />
             <span className="text-xl font-bold text-white">Ethical Bytes</span>
           </Link>
-          
+
           <div className="hidden md:flex space-x-8">
             <NavLink to="/" icon={<Home />} text="Home" />
             <NavLink to="/principles" icon={<Brain />} text="AI Principles" />
@@ -27,7 +27,15 @@ function Navbar() {
   );
 }
 
-function NavLink({ to, icon, text }: { to: string; icon: React.ReactNode; text: string }) {
+function NavLink({
+  to,
+  icon,
+  text,
+}: {
+  to: string;
+  icon: React.ReactNode;
+  text: string;
+}) {
   return (
     <Link
       to={to}

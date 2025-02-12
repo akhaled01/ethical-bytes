@@ -103,5 +103,5 @@ export const aiFunFacts = [
   "AI can help predict when flowers will bloom!",
   "Some AI can create new types of playground slides!",
   "AI helps make better scooters!",
-  "AI can help design more fun children's museums!"
+  "AI can help design more fun children's museums!",
 ];

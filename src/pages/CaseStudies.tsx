@@ -1,6 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Stethoscope, Brain, Shield, Notebook as Robot, Sparkles, BookOpen } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Stethoscope,
+  Brain,
+  Shield,
+  Notebook as Robot,
+  Sparkles,
+  BookOpen,
+} from "lucide-react";
 
 function CaseStudies() {
   return (
@@ -12,10 +19,11 @@ function CaseStudies() {
       >
         <h1 className="text-4xl font-bold text-blue-600 mb-6">AI in Action</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Let's explore amazing ways AI helps make our world better! These are real examples of AI being used responsibly.
+          Let's explore amazing ways AI helps make our world better! These are
+          real examples of AI being used responsibly.
         </p>
       </motion.div>
-      
+
       <div className="space-y-12">
         <CaseStudy
           title="AI Helping Doctors"
@@ -26,16 +34,16 @@ function CaseStudies() {
             "Helps find illnesses faster",
             "Makes fewer mistakes",
             "Gives doctors more time with patients",
-            "Works 24/7 to help people"
+            "Works 24/7 to help people",
           ]}
           safetyMeasures={[
             "Doctors always check AI's work",
             "Keeps patient information private",
             "Only used by trained professionals",
-            "Regular safety updates"
+            "Regular safety updates",
           ]}
         />
-        
+
         <CaseStudy
           title="AI Learning Helper"
           icon={<Brain className="w-12 h-12 text-purple-500" />}
@@ -45,16 +53,16 @@ function CaseStudies() {
             "Adapts to how you learn best",
             "Available anytime for help",
             "Makes learning fun and interactive",
-            "Gives helpful feedback"
+            "Gives helpful feedback",
           ]}
           safetyMeasures={[
             "Parents can monitor progress",
             "No personal information needed",
             "Safe, kid-friendly content only",
-            "Human teachers still lead the way"
+            "Human teachers still lead the way",
           ]}
         />
-        
+
         <CaseStudy
           title="AI Safety Guard"
           icon={<Shield className="w-12 h-12 text-green-500" />}
@@ -64,13 +72,13 @@ function CaseStudies() {
             "Blocks harmful content",
             "Protects against online bullying",
             "Keeps personal info safe",
-            "Works quickly to stop threats"
+            "Works quickly to stop threats",
           ]}
           safetyMeasures={[
             "Regular updates for new threats",
             "Human moderators double-check",
             "Parents can set controls",
-            "Reports suspicious activity"
+            "Reports suspicious activity",
           ]}
         />
 
@@ -83,13 +91,13 @@ function CaseStudies() {
             "Helps with creative ideas",
             "Makes art more accessible",
             "Saves time on simple tasks",
-            "Teaches new techniques"
+            "Teaches new techniques",
           ]}
           safetyMeasures={[
             "Artists maintain creative control",
             "Clear labeling of AI-assisted work",
             "Respects copyright rules",
-            "Age-appropriate content only"
+            "Age-appropriate content only",
           ]}
         />
       </div>
@@ -100,7 +108,9 @@ function CaseStudies() {
         transition={{ delay: 0.5 }}
         className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8"
       >
-        <h2 className="text-2xl font-bold text-center mb-6">What We've Learned</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">
+          What We've Learned
+        </h2>
         <div className="grid md:grid-cols-3 gap-6">
           <LearningPoint
             icon={<Robot className="w-8 h-8 text-blue-500" />}
@@ -123,7 +133,14 @@ function CaseStudies() {
   );
 }
 
-function CaseStudy({ title, icon, description, imageUrl, benefits, safetyMeasures }: {
+function CaseStudy({
+  title,
+  icon,
+  description,
+  imageUrl,
+  benefits,
+  safetyMeasures,
+}: {
   title: string;
   icon: React.ReactNode;
   description: string;
@@ -140,7 +157,11 @@ function CaseStudy({ title, icon, description, imageUrl, benefits, safetyMeasure
     >
       <div className="md:flex">
         <div className="md:w-1/2">
-          <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="p-8 md:w-1/2">
           <div className="flex items-center gap-4 mb-4">
@@ -148,7 +169,7 @@ function CaseStudy({ title, icon, description, imageUrl, benefits, safetyMeasure
             <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
           </div>
           <p className="text-gray-600 text-lg mb-6">{description}</p>
-          
+
           <div className="space-y-6">
             <div>
               <h3 className="font-bold text-blue-600 mb-2">Benefits:</h3>
@@ -161,9 +182,11 @@ function CaseStudy({ title, icon, description, imageUrl, benefits, safetyMeasure
                 ))}
               </ul>
             </div>
-            
+
             <div>
-              <h3 className="font-bold text-green-600 mb-2">Safety Measures:</h3>
+              <h3 className="font-bold text-green-600 mb-2">
+                Safety Measures:
+              </h3>
               <ul className="space-y-2">
                 {safetyMeasures.map((measure, index) => (
                   <li key={index} className="flex items-center gap-2">
@@ -180,7 +203,11 @@ function CaseStudy({ title, icon, description, imageUrl, benefits, safetyMeasure
   );
 }
 
-function LearningPoint({ icon, title, description }: {
+function LearningPoint({
+  icon,
+  title,
+  description,
+}: {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -191,9 +218,7 @@ function LearningPoint({ icon, title, description }: {
       className="bg-white p-6 rounded-xl shadow-md"
     >
       <div className="flex flex-col items-center text-center">
-        <div className="bg-blue-50 p-3 rounded-full mb-4">
-          {icon}
-        </div>
+        <div className="bg-blue-50 p-3 rounded-full mb-4">{icon}</div>
         <h3 className="text-lg font-bold mb-2">{title}</h3>
         <p className="text-gray-600">{description}</p>
       </div>

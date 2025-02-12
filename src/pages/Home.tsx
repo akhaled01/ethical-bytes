@@ -1,6 +1,13 @@
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Notebook as Robot, Brain, Shield, Heart, Star, Sparkles } from 'lucide-react';
+import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  Notebook as Robot,
+  Brain,
+  Shield,
+  Heart,
+  Star,
+  Sparkles,
+} from "lucide-react";
 
 function Home() {
   const { scrollYProgress } = useScroll();
@@ -10,33 +17,34 @@ function Home() {
   return (
     <div className="max-w-6xl mx-auto text-center">
       {/* Hero Banner */}
-      <motion.div 
+      <motion.div
         className="relative h-[500px] -mx-4 mb-16 overflow-hidden"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           opacity,
-          scale
+          scale,
         }}
       >
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-gradient-to-r from-yellow-500/90 via-amber-500/90 to-orange-500/90"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <div className="h-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center">
-            <motion.div 
+            <motion.div
               className="mb-8 relative"
-              animate={{ 
+              animate={{
                 y: [0, -10, 0],
-                rotate: [0, -5, 5, 0]
+                rotate: [0, -5, 5, 0],
               }}
-              transition={{ 
+              transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <Robot className="h-32 w-32 text-white" />
@@ -49,43 +57,45 @@ function Home() {
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "linear"
+                  ease: "linear",
                 }}
               >
                 <Sparkles className="h-8 w-8 text-yellow-300" />
               </motion.div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <motion.h1 
+              <motion.h1
                 className="text-4xl md:text-6xl font-bold text-white mb-6"
                 animate={{
                   textShadow: [
                     "0 0 8px rgba(255,255,255,0.5)",
                     "0 0 16px rgba(255,255,255,0.5)",
-                    "0 0 8px rgba(255,255,255,0.5)"
-                  ]
+                    "0 0 8px rgba(255,255,255,0.5)",
+                  ],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               >
                 Welcome to Ethical Bytes!
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-white/90 mb-8 max-w-3xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                Your friendly guide to understanding Artificial Intelligence! Let's learn how to use AI safely and responsibly while having lots of fun! 🚀
+                Your friendly guide to understanding Artificial Intelligence!
+                Let's learn how to use AI safely and responsibly while having
+                lots of fun! 🚀
               </motion.p>
             </motion.div>
           </div>
@@ -93,7 +103,7 @@ function Home() {
       </motion.div>
 
       <div className="px-4">
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -130,18 +140,18 @@ function Home() {
           viewport={{ once: true }}
           className="bg-gradient-to-r from-yellow-400/20 via-amber-400/20 to-orange-400/20 rounded-2xl p-8 shadow-lg mb-16 backdrop-blur-sm"
         >
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 via-amber-600 to-orange-600 mb-6"
             animate={{
-              backgroundPosition: ['0%', '100%', '0%'],
+              backgroundPosition: ["0%", "100%", "0%"],
             }}
             transition={{
               duration: 5,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             style={{
-              backgroundSize: '200% auto',
+              backgroundSize: "200% auto",
             }}
           >
             Why Learn About AI?
@@ -160,7 +170,7 @@ function Home() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,25 +203,33 @@ function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
               viewport={{ once: true }}
-            >• Always use AI with a grown-up nearby</motion.li>
+            >
+              • Always use AI with a grown-up nearby
+            </motion.li>
             <motion.li
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
               viewport={{ once: true }}
-            >• Keep your personal information private</motion.li>
+            >
+              • Keep your personal information private
+            </motion.li>
             <motion.li
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
               viewport={{ once: true }}
-            >• Think carefully about AI's suggestions</motion.li>
+            >
+              • Think carefully about AI's suggestions
+            </motion.li>
             <motion.li
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
               viewport={{ once: true }}
-            >• Have fun while staying safe!</motion.li>
+            >
+              • Have fun while staying safe!
+            </motion.li>
           </ul>
         </motion.div>
       </div>
@@ -219,7 +237,13 @@ function Home() {
   );
 }
 
-function InfoCard({ icon, title, description, color, iconBg }: {
+function InfoCard({
+  icon,
+  title,
+  description,
+  color,
+  iconBg,
+}: {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -231,7 +255,9 @@ function InfoCard({ icon, title, description, color, iconBg }: {
       whileHover={{ scale: 1.05 }}
       className={`${color} rounded-xl p-6 shadow-lg border-2 border-opacity-50`}
     >
-      <div className={`${iconBg} w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}>
+      <div
+        className={`${iconBg} w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}
+      >
         {icon}
       </div>
       <h3 className="text-xl font-bold mb-3">{title}</h3>
@@ -240,7 +266,11 @@ function InfoCard({ icon, title, description, color, iconBg }: {
   );
 }
 
-function LearningPoint({ icon, title, description }: {
+function LearningPoint({
+  icon,
+  title,
+  description,
+}: {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -261,7 +291,11 @@ function LearningPoint({ icon, title, description }: {
   );
 }
 
-function FeatureCard({ title, description, imageUrl }: {
+function FeatureCard({
+  title,
+  description,
+  imageUrl,
+}: {
   title: string;
   description: string;
   imageUrl: string;

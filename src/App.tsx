@@ -1,13 +1,13 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import FloatingAvatar from './components/FloatingAvatar';
-import Home from './pages/Home';
-import Principles from './pages/Principles';
-import CaseStudies from './pages/CaseStudies';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import FloatingAvatar from "./components/FloatingAvatar";
+import Home from "./pages/Home";
+import Principles from "./pages/Principles";
+import CaseStudies from "./pages/CaseStudies";
 // import Resources from './pages/Resources';
-import Game from './pages/Game';
-import About from './pages/About';
+import Game from "./pages/Game";
+import About from "./pages/About";
 
 function App() {
   return (

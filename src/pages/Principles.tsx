@@ -1,6 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ThumbsUp, ThumbsDown, Shield, Heart, Brain, AlertTriangle } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  ThumbsUp,
+  ThumbsDown,
+  Shield,
+  Heart,
+  Brain,
+  AlertTriangle,
+} from "lucide-react";
 
 function Principles() {
   return (
@@ -12,11 +19,12 @@ function Principles() {
       >
         <h1 className="text-4xl font-bold text-blue-600 mb-6">AI Principles</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Just like we have rules for being good friends, there are important rules for using AI responsibly. 
-          Let's learn what makes AI helpful and safe!
+          Just like we have rules for being good friends, there are important
+          rules for using AI responsibly. Let's learn what makes AI helpful and
+          safe!
         </p>
       </motion.div>
-      
+
       <div className="grid md:grid-cols-2 gap-8 mb-12">
         <ComparisonCard
           title="Good AI"
@@ -29,7 +37,7 @@ function Principles() {
             "Has safety measures in place",
             "Works together with humans",
             "Follows ethical guidelines",
-            "Protects user safety"
+            "Protects user safety",
           ]}
           color="bg-green-50"
           borderColor="border-green-200"
@@ -37,10 +45,10 @@ function Principles() {
             "AI helping doctors find illnesses faster",
             "AI tutors that explain things clearly",
             "AI that checks if information is true",
-            "AI that helps people with disabilities"
+            "AI that helps people with disabilities",
           ]}
         />
-        
+
         <ComparisonCard
           title="Bad AI"
           icon={<ThumbsDown className="w-12 h-12 text-red-500" />}
@@ -52,7 +60,7 @@ function Principles() {
             "Has no safety checks",
             "Replaces human judgment completely",
             "Ignores ethical concerns",
-            "Creates harmful content"
+            "Creates harmful content",
           ]}
           color="bg-red-50"
           borderColor="border-red-200"
@@ -60,7 +68,7 @@ function Principles() {
             "AI that shares personal details",
             "AI that makes unfair choices",
             "AI that spreads false information",
-            "AI that tricks people"
+            "AI that tricks people",
           ]}
         />
       </div>
@@ -94,7 +102,9 @@ function Principles() {
       >
         <div className="flex items-center gap-4 mb-4">
           <AlertTriangle className="w-8 h-8 text-yellow-600" />
-          <h2 className="text-2xl font-bold text-yellow-800">Important Reminders</h2>
+          <h2 className="text-2xl font-bold text-yellow-800">
+            Important Reminders
+          </h2>
         </div>
         <ul className="space-y-3 text-yellow-700">
           <li className="flex items-center gap-2">
@@ -103,7 +113,8 @@ function Principles() {
           </li>
           <li className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-yellow-400" />
-            Tell a grown-up if AI shows you something that makes you uncomfortable
+            Tell a grown-up if AI shows you something that makes you
+            uncomfortable
           </li>
           <li className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-yellow-400" />
@@ -119,7 +130,14 @@ function Principles() {
   );
 }
 
-function ComparisonCard({ title, icon, points, color, borderColor, examples }: {
+function ComparisonCard({
+  title,
+  icon,
+  points,
+  color,
+  borderColor,
+  examples,
+}: {
   title: string;
   icon: React.ReactNode;
   points: string[];
@@ -170,7 +188,12 @@ function ComparisonCard({ title, icon, points, color, borderColor, examples }: {
   );
 }
 
-function PrincipleCard({ icon, title, description, color }: {
+function PrincipleCard({
+  icon,
+  title,
+  description,
+  color,
+}: {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -182,9 +205,7 @@ function PrincipleCard({ icon, title, description, color }: {
       className={`${color} p-6 rounded-xl shadow-lg`}
     >
       <div className="flex flex-col items-center text-center">
-        <div className="bg-white p-3 rounded-full shadow-md mb-4">
-          {icon}
-        </div>
+        <div className="bg-white p-3 rounded-full shadow-md mb-4">{icon}</div>
         <h3 className="text-xl font-bold mb-2">{title}</h3>
         <p className="text-gray-600">{description}</p>
       </div>

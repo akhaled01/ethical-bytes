@@ -1,14 +1,24 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { aiFunFacts } from '../data/aiFunFacts';
+import { useEffect, useState, useRef } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import { aiFunFacts } from "../data/aiFunFacts";
 
 function FloatingAvatar() {
   const [isDragging, setIsDragging] = useState(false);
-  const [bounds, setBounds] = useState({ left: 0, right: 0, top: 0, bottom: 0 });
+  const [bounds, setBounds] = useState({
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  });
   const [showFact, setShowFact] = useState(false);
-  const [currentFact, setCurrentFact] = useState('');
+  const [currentFact, setCurrentFact] = useState("");
   const avatarRef = useRef<HTMLDivElement>(null);
-  
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -21,46 +31,47 @@ function FloatingAvatar() {
       if (avatarRef.current) {
         const avatarWidth = avatarRef.current.offsetWidth;
         const avatarHeight = avatarRef.current.offsetHeight;
-        
+
         setBounds({
           left: -window.innerWidth + avatarWidth + 20,
           right: -20,
           top: -window.innerHeight + avatarHeight + 20,
-          bottom: -20
+          bottom: -20,
         });
       }
     };
 
     updateBounds();
-    window.addEventListener('resize', updateBounds);
-    return () => window.removeEventListener('resize', updateBounds);
+    window.addEventListener("resize", updateBounds);
+    return () => window.removeEventListener("resize", updateBounds);
   }, []);
 
   useEffect(() => {
     let timeoutId: number;
-    
+
     const animate = () => {
       if (!isDragging) {
         const time = Date.now() * 0.001;
         const radius = 30;
-        
+
         const newX = Math.sin(time) * radius;
-        const newY = Math.sin(time * 2) * radius / 2;
-        
+        const newY = (Math.sin(time * 2) * radius) / 2;
+
         x.set(Math.max(bounds.left, Math.min(bounds.right, newX)));
         y.set(Math.max(bounds.top, Math.min(bounds.bottom, newY)));
       }
-      
+
       timeoutId = requestAnimationFrame(animate);
     };
-    
+
     animate();
     return () => cancelAnimationFrame(timeoutId);
   }, [isDragging, x, y, bounds]);
 
   const handleClick = () => {
     if (!isDragging) {
-      const randomFact = aiFunFacts[Math.floor(Math.random() * aiFunFacts.length)];
+      const randomFact =
+        aiFunFacts[Math.floor(Math.random() * aiFunFacts.length)];
       setCurrentFact(randomFact);
       setShowFact(true);
       setTimeout(() => setShowFact(false), 5000);
@@ -79,7 +90,7 @@ function FloatingAvatar() {
       style={{
         x: xSpring,
         y: ySpring,
-        position: 'fixed',
+        position: "fixed",
         bottom: 20,
         right: 20,
         zIndex: 50,
@@ -106,15 +117,19 @@ function FloatingAvatar() {
       {/* Weee Message */}
       <motion.div
         initial={{ opacity: 0, y: 0 }}
-        animate={isDragging ? {
-          opacity: [0, 1, 1, 0],
-          y: [-20, -30, -40, -50],
-          x: [-10, 10, -10, 10]
-        } : { opacity: 0, y: 0 }}
+        animate={
+          isDragging
+            ? {
+                opacity: [0, 1, 1, 0],
+                y: [-20, -30, -40, -50],
+                x: [-10, 10, -10, 10],
+              }
+            : { opacity: 0, y: 0 }
+        }
         transition={{
           duration: 1,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
         className="absolute -top-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap"
       >
