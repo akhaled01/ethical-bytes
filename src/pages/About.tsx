@@ -13,7 +13,7 @@ function About() {
   return (
     <div className="max-w-4xl mx-auto py-24">
       <h1 className="text-4xl font-bold text-center text-blue-600 dark:text-blue-300 mb-12">
-        About AI Buddy
+        About Ethical Bytes
       </h1>
 
       <div className="bg-white dark:bg-purple-900/40 backdrop-blur-sm rounded-xl shadow-lg p-8 mb-12 border border-purple-100 dark:border-purple-700/50">
