@@ -159,28 +159,12 @@ function Game() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-24 relative">
-      <canvas
-        ref={canvasRef}
-        className="fixed left-0 top-0 w-screen h-screen pointer-events-none z-50"
-      />
-
-      <motion.h1
-        className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 mb-8"
-        animate={{
-          backgroundPosition: ["0%", "100%", "0%"],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        style={{
-          backgroundSize: "200% auto",
-        }}
-      >
-        AI Responsibility Game
-      </motion.h1>
+    <div className="min-h-screen flex items-center justify-center relative">
+      <div className="max-w-4xl w-full px-4 py-12">
+        <canvas
+          ref={canvasRef}
+          className="fixed left-0 top-0 w-screen h-screen pointer-events-none z-50"
+        />
 
       {gameComplete ? (
         <motion.div
@@ -307,6 +291,7 @@ function Game() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
