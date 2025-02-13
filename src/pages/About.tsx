@@ -1,8 +1,15 @@
-import React from "react";
 import { motion } from "framer-motion";
+import React, { useEffect } from "react";
+import { useNavbar } from "@/context/NavbarContext";
 import { Users, Heart, Mail } from "lucide-react";
 
 function About() {
+  const { setIsTransparent } = useNavbar();
+
+  useEffect(() => {
+    setIsTransparent(false);
+  }, [setIsTransparent]);
+
   return (
     <div className="max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold text-center text-blue-600 mb-12">

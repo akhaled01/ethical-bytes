@@ -1,97 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavbar } from "@/context/NavbarContext";
 import { motion } from "framer-motion";
-import {
-  Brain,
-  Shield,
-  Heart,
-  Star,
-} from "lucide-react";
+import { Brain, Shield, Heart, Star, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Home() {
+  const { setIsTransparent } = useNavbar();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsTransparent(scrollPosition < window.innerHeight);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [setIsTransparent]);
   return (
-    <div className="relative text-center">
+    <div className="text-center">
       {/* Hero Banner */}
-      <motion.div
-        className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="absolute inset-0 bg-[url('/assets/img1.png')] opacity-30 bg-cover bg-center mix-blend-overlay"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0.4)_100%)]"></div>
-        <motion.div
-          className="absolute inset-0 backdrop-blur-sm bg-gradient-to-r from-yellow-500/30 via-amber-500/30 to-orange-500/30"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="h-screen max-w-6xl mx-auto px-4 flex flex-col items-center justify-center">
-            <motion.div
-              className="mb-8 relative"
-              animate={{
-                y: [0, -10, 0],
-                rotate: [0, -5, 5, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <motion.img 
-                src="/assets/logo.png" 
-                alt="Ethical Bytes Logo" 
-                className="h-40 w-40 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
-                animate={{
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+      <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-yellow-700 via-amber-500 to-orange-800 dark:from-purple-950 dark:via-purple-900 dark:to-purple-800 transition-colors duration-300">
+        <div className="absolute inset-0 bg-[url('/assets/img1.png')] opacity-20 bg-cover bg-center mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0.3)_100%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,rgba(0,0,0,0.5)_100%)]"></div>
+        <div className="absolute inset-0 backdrop-blur-sm">
+          <div className="h-screen max-w-4xl mx-auto px-4 flex flex-col items-center justify-center text-center">
+            <div className="mb-8 relative">
+              <img
+                src="/assets/logo.png"
+                alt="Ethical Bytes Logo"
+                className="h-40 w-40 object-contain filter drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] dark:drop-shadow-[0_0_30px_rgba(59,130,246,0.7)]"
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.h1
-                className="text-4xl md:text-6xl font-bold text-white mb-6"
-                animate={{
-                  textShadow: [
-                    "0 0 8px rgba(255,255,255,0.5)",
-                    "0 0 16px rgba(255,255,255,0.5)",
-                    "0 0 8px rgba(255,255,255,0.5)",
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
+            <div className="px-8">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-mono filter drop-shadow-[0_0_10px_rgba(255,255,255,0.7)] whitespace-nowrap">
                 Welcome to Ethical Bytes!
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                className="text-xl text-white/90 mb-8 max-w-3xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
+              <p className="text-2xl text-white/90 mb-8 max-w-4xl mx-auto font-mono filter drop-shadow-[0_0_5px_rgba(255,255,255,0.5)] text-center">
                 Your friendly guide to understanding Artificial Intelligence!
-                Let's learn how to use AI safely and responsibly while having
-                lots of fun! 🚀
-              </motion.p>
-            </motion.div>
-          </div>
-        </motion.div>
-      </motion.div>
+              </p>
 
-      <div className="px-4 max-w-6xl mx-auto">
+              <Link 
+                to="/principles" 
+                className="inline-flex items-center px-6 py-3 text-lg font-mono text-white bg-orange-500 dark:bg-purple-700 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-orange-600 dark:hover:bg-purple-800 group"
+              >
+                <span>Explore AI Principles</span>
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-4 max-w-6xl mx-auto py-4">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-16 px-4"
           initial={{ opacity: 0, y: 20 }}
@@ -159,14 +125,14 @@ function Home() {
           </div>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ staggerChildren: 0.2 }}
           viewport={{ once: true }}
-        >
-          <FeatureCard
+        > */}
+        {/* <FeatureCard
             title="Start Your AI Adventure"
             description="Join us on an exciting journey to learn about AI through fun activities and games!"
             imageUrl="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
@@ -175,8 +141,8 @@ function Home() {
             title="Learn & Play Together"
             description="Explore our interactive games and activities that make learning about AI fun!"
             imageUrl="https://images.unsplash.com/photo-1516714819001-8ee7a13b71d7?auto=format&fit=crop&w=800&q=80"
-          />
-        </motion.div>
+          /> */}
+        {/* </motion.div> */}
 
         <motion.div
           className="mt-16 p-6 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl border-2 border-yellow-200"
@@ -229,7 +195,7 @@ function Home() {
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
-  hover: { scale: 1.05, transition: { duration: 0.2 } }
+  hover: { scale: 1.05, transition: { duration: 0.2 } },
 };
 
 function InfoCard({
@@ -254,21 +220,29 @@ function InfoCard({
       whileInView="visible"
       whileHover="hover"
       viewport={{ once: true }}
-      className={`${color} rounded-xl p-8 shadow-lg transition-all duration-300 hover:shadow-2xl relative overflow-hidden backdrop-blur-sm border border-white/10 group`}
+      className={`${color} dark:bg-opacity-20 rounded-xl p-8 shadow-lg transition-all duration-300 hover:shadow-2xl relative overflow-hidden backdrop-blur-sm border border-white/10 dark:border-white/20 group`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <motion.div
-        className={`${iconBg} w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300`}
-        animate={isHovered ? {
-          rotate: [0, 10, -10, 0],
-          scale: [1, 1.1, 1.1, 1],
-        } : {}}
+        className={`${iconBg} dark:bg-opacity-30 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300`}
+        animate={
+          isHovered
+            ? {
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1.1, 1],
+              }
+            : {}
+        }
         transition={{ duration: 0.5 }}
       >
         {icon}
       </motion.div>
-      <h3 className="text-2xl font-bold mb-3 text-white/90 group-hover:text-white transition-colors duration-300">{title}</h3>
-      <p className="text-white/70 group-hover:text-white/90 transition-colors duration-300 leading-relaxed">{description}</p>
+      <h3 className="text-2xl font-bold mb-3 text-black/90 dark:text-white group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
+        {title}
+      </h3>
+      <p className="text-black/70 dark:text-white/90 group-hover:text-black/90 dark:group-hover:text-white transition-colors duration-300 leading-relaxed">
+        {description}
+      </p>
     </motion.div>
   );
 }
@@ -283,16 +257,13 @@ function LearningPoint({
   description: string;
 }) {
   return (
-    <motion.div 
+    <motion.div
       className="p-4 rounded-lg bg-white/50 backdrop-blur-sm"
-      whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
       whileTap={{ scale: 0.98 }}
     >
-      <motion.div 
-        className="flex items-center mb-2"
-        whileHover={{ x: 5 }}
-      >
-        <motion.div 
+      <motion.div className="flex items-center mb-2" whileHover={{ x: 5 }}>
+        <motion.div
           className="mr-3"
           whileHover={{ rotate: 360 }}
           transition={{ duration: 0.5 }}
@@ -302,67 +273,6 @@ function LearningPoint({
         <h3 className="text-lg font-semibold">{title}</h3>
       </motion.div>
       <p className="text-gray-700">{description}</p>
-    </motion.div>
-  );
-}
-
-function FeatureCard({
-  title,
-  description,
-  imageUrl,
-}: {
-  title: string;
-  description: string;
-  imageUrl: string;
-}) {
-  const [isHovered, setIsHovered] = React.useState(false);
-
-  return (
-    <motion.div
-      className="relative overflow-hidden rounded-xl group cursor-pointer"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-    >
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"
-        animate={{
-          opacity: isHovered ? 0.9 : 0.7,
-        }}
-        transition={{ duration: 0.3 }}
-      />
-      <motion.img
-        src={imageUrl}
-        alt={title}
-        className="w-full h-64 object-cover"
-        animate={{
-          scale: isHovered ? 1.1 : 1,
-        }}
-        transition={{ duration: 0.4 }}
-      />
-      <div className="absolute inset-0 z-20 p-6 flex flex-col justify-end text-white">
-        <motion.h3 
-          className="text-2xl font-bold mb-2"
-          animate={{
-            y: isHovered ? -5 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          {title}
-        </motion.h3>
-        <motion.p 
-          className="text-white/90"
-          initial={{ opacity: 0.8, y: 20 }}
-          animate={{
-            opacity: isHovered ? 1 : 0.8,
-            y: isHovered ? 0 : 20,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          {description}
-        </motion.p>
-      </div>
     </motion.div>
   );
 }

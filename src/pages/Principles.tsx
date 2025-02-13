@@ -11,14 +11,14 @@ import {
 
 function Principles() {
   return (
-    <div className="max-w-6xl mx-auto px-4">
+    <div className="max-w-6xl mx-auto px-4 py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl font-bold text-blue-600 mb-6">AI Principles</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-300 mb-6">AI Principles</h1>
+        <p className="text-xl text-gray-600 dark:text-gray-200 max-w-3xl mx-auto">
           Just like we have rules for being good friends, there are important
           rules for using AI responsibly. Let's learn what makes AI helpful and
           safe!
@@ -39,7 +39,7 @@ function Principles() {
             "Follows ethical guidelines",
             "Protects user safety",
           ]}
-          color="bg-green-50"
+          color="bg-green-50 dark:bg-green-900/60"
           borderColor="border-green-200"
           examples={[
             "AI helping doctors find illnesses faster",
@@ -62,7 +62,7 @@ function Principles() {
             "Ignores ethical concerns",
             "Creates harmful content",
           ]}
-          color="bg-red-50"
+          color="bg-red-50 dark:bg-red-900/60"
           borderColor="border-red-200"
           examples={[
             "AI that shares personal details",
@@ -78,19 +78,19 @@ function Principles() {
           icon={<Shield className="w-10 h-10 text-blue-500" />}
           title="Safety First"
           description="Always use AI with a grown-up nearby and never share personal information."
-          color="bg-blue-50"
+          color="bg-blue-50 dark:bg-blue-300"
         />
         <PrincipleCard
           icon={<Heart className="w-10 h-10 text-pink-500" />}
           title="Be Kind"
           description="Use AI to help others and make the world a better place."
-          color="bg-pink-50"
+          color="bg-pink-50 dark:bg-pink-300"
         />
         <PrincipleCard
           icon={<Brain className="w-10 h-10 text-purple-500" />}
           title="Think Critically"
           description="Don't believe everything AI tells you - always think for yourself!"
-          color="bg-purple-50"
+          color="bg-purple-50 dark:bg-purple-300"
         />
       </div>
 
@@ -98,7 +98,7 @@ function Principles() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200"
+        className="bg-yellow-50 dark:bg-yellow-300 p-6 rounded-xl border-2 border-yellow-200 dark:border-yellow-400"
       >
         <div className="flex items-center gap-4 mb-4">
           <AlertTriangle className="w-8 h-8 text-yellow-600" />
@@ -178,7 +178,7 @@ function ComparisonCard({
         <h3 className="font-bold mb-3">Examples:</h3>
         <ul className="space-y-2">
           {examples.map((example, index) => (
-            <li key={index} className="text-gray-600 italic">
+            <li key={index} className="text-gray-600 dark:text-white italic">
               • {example}
             </li>
           ))}

@@ -17,6 +17,7 @@ function FloatingAvatar() {
   });
   const [showFact, setShowFact] = useState(false);
   const [currentFact, setCurrentFact] = useState("");
+  const [popupPosition, setPopupPosition] = useState<'left' | 'center'>('center');
   const avatarRef = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
@@ -69,9 +70,18 @@ function FloatingAvatar() {
   }, [isDragging, x, y, bounds]);
 
   const handleClick = () => {
-    if (!isDragging) {
-      const randomFact =
-        aiFunFacts[Math.floor(Math.random() * aiFunFacts.length)];
+    if (!isDragging && avatarRef.current) {
+      // Check if we're too close to the right edge
+      const avatarRect = avatarRef.current.getBoundingClientRect();
+      const popupWidth = 256; // w-64 = 16rem = 256px
+      
+      if (avatarRect.right + (popupWidth/2) > window.innerWidth) {
+        setPopupPosition('left');
+      } else {
+        setPopupPosition('center');
+      }
+
+      const randomFact = aiFunFacts[Math.floor(Math.random() * aiFunFacts.length)];
       setCurrentFact(randomFact);
       setShowFact(true);
       setTimeout(() => setShowFact(false), 5000);
@@ -105,7 +115,7 @@ function FloatingAvatar() {
             initial={{ opacity: 0, y: 0, scale: 0.8 }}
             animate={{ opacity: 1, y: -20, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.8 }}
-            className="absolute -top-24 left-1/2 transform -translate-x-1/2 w-64"
+            className={`absolute -top-24 w-64 ${popupPosition === 'left' ? '-left-64' : 'left-1/2 -translate-x-1/2'}`}
           >
             <div className="bg-white px-4 py-2 rounded-xl shadow-lg border-2 border-blue-200">
               <p className="text-blue-600 text-sm">{currentFact}</p>
