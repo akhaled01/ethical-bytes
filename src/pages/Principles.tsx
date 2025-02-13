@@ -20,7 +20,7 @@ function Principles() {
         <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-300 mb-6">AI Principles</h1>
         <p className="text-xl text-gray-600 dark:text-gray-200 max-w-3xl mx-auto">
           Just like we have rules for being good friends, there are important
-          rules for using AI responsibly. Let's learn what makes AI helpful and
+          rules for  AI responsibly. Let's learn what makes AI helpful and
           safe!
         </p>
       </motion.div>
