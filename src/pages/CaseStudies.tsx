@@ -20,7 +20,7 @@ function CaseStudies() {
 
   const videoSrc =
     "https://www.youtube.com/embed/E7Bt8snV360?si=_bfORIEogXcszRSJ";
-  const thumbnailSrc = "/assets/C1-NearbyDoc.png";
+  const thumbnailSrc = "/assets/thumbnail.png";
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-24">
@@ -29,7 +29,9 @@ function CaseStudies() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl font-bold text-blue-600 dark:text-white mb-6">AI in Action</h1>
+        <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-300 mb-6">
+          AI in Action
+        </h1>
         <p className="text-xl text-gray-700 dark:text-gray-200 max-w-3xl mx-auto mb-8">
           Let's explore amazing ways AI helps make our world better! These are
           real examples of AI being used responsibly.

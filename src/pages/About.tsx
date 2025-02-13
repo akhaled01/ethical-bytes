@@ -12,7 +12,7 @@ function About() {
 
   return (
     <div className="max-w-4xl mx-auto py-24">
-      <h1 className="text-4xl font-bold text-center text-blue-600 mb-12">
+      <h1 className="text-4xl font-bold text-center text-blue-600 dark:text-blue-300 mb-12">
         About AI Buddy
       </h1>
 
@@ -33,22 +33,10 @@ function About() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
-        <TeamMember
-          name="Abdulrahman Idrees"
-          role="Frontend Developer"
-        />
-        <TeamMember
-          name="Amani Fardan"
-          role="UI/UX Designer"
-        />
-        <TeamMember
-          name="Reem Abbar"
-          role="Frontend Developer"
-        />
-        <TeamMember
-          name="Issa"
-          role="Backend Developer"
-        />
+        <TeamMember name="Abdulrahman Idrees" role="Developer" />
+        <TeamMember name="Amani Fardan" role="UI/UX Designer" />
+        <TeamMember name="Reem Abbar" role="Researcher" />
+        <TeamMember name="Issa" role="Content Generation" />
       </div>
 
       <motion.div

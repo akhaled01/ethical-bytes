@@ -258,8 +258,8 @@ function LearningPoint({
 }) {
   return (
     <motion.div
-      className="p-4 rounded-lg bg-white/50 backdrop-blur-sm"
-      whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+      className="p-4 rounded-lg bg-gradient-to-br from-yellow-500/10 to-amber-500/10backdrop-blur-sm border border-white/10 dark:border-white/20"
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.6)" }}
       whileTap={{ scale: 0.98 }}
     >
       <motion.div className="flex items-center mb-2" whileHover={{ x: 5 }}>
@@ -272,7 +272,7 @@ function LearningPoint({
         </motion.div>
         <h3 className="text-lg font-semibold">{title}</h3>
       </motion.div>
-      <p className="text-gray-700">{description}</p>
+      <p className="text-gray-700 dark:text-gray-100">{description}</p>
     </motion.div>
   );
 }

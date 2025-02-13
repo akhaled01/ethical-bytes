@@ -78,19 +78,19 @@ function Principles() {
           icon={<Shield className="w-10 h-10 text-blue-500" />}
           title="Safety First"
           description="Always use AI with a grown-up nearby and never share personal information."
-          color="bg-blue-50 dark:bg-blue-300"
+          color="bg-blue-50 dark:bg-blue-900/60 text-blue-800 dark:text-blue-100"
         />
         <PrincipleCard
           icon={<Heart className="w-10 h-10 text-pink-500" />}
           title="Be Kind"
           description="Use AI to help others and make the world a better place."
-          color="bg-pink-50 dark:bg-pink-300"
+          color="bg-pink-50 dark:bg-pink-900/60 text-pink-800 dark:text-pink-100"
         />
         <PrincipleCard
           icon={<Brain className="w-10 h-10 text-purple-500" />}
           title="Think Critically"
           description="Don't believe everything AI tells you - always think for yourself!"
-          color="bg-purple-50 dark:bg-purple-300"
+          color="bg-purple-50 dark:bg-purple-900/60 text-purple-800 dark:text-purple-100"
         />
       </div>
 
@@ -207,7 +207,7 @@ function PrincipleCard({
       <div className="flex flex-col items-center text-center">
         <div className="bg-white p-3 rounded-full shadow-md mb-4">{icon}</div>
         <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+        <p>{description}</p>
       </div>
     </motion.div>
   );

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 type NavbarContextType = {
   isTransparent: boolean;
@@ -9,11 +10,12 @@ const NavbarContext = createContext<NavbarContextType | undefined>(undefined);
 
 export function NavbarProvider({ children }: { children: React.ReactNode }) {
   const [isTransparent, setIsTransparent] = useState(false);
+  const location = useLocation();
 
-  // Reset transparency when component unmounts
+  // Reset transparency when location changes or component unmounts
   useEffect(() => {
-    return () => setIsTransparent(false);
-  }, []);
+    setIsTransparent(false);
+  }, [location]);
 
   return (
     <NavbarContext.Provider value={{ isTransparent, setIsTransparent }}>
