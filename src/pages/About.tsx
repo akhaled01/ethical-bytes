@@ -22,7 +22,7 @@ function About() {
           <h2 className="text-2xl font-bold">Our Mission</h2>
         </div>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-          AI Buddy was created to help kids understand artificial intelligence
+          Ethical Bytes was created to help kids understand artificial intelligence
           in a fun and safe way. We believe that learning about AI early helps
           prepare children for a future where AI is part of everyday life.
         </p>
