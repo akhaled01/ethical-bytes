@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Brain, BookOpen, GamepadIcon, Users, Home } from "lucide-react";
-import Logo from "./Logo";
+
 
 function Navbar() {
   return (
@@ -9,7 +9,7 @@ function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <Logo />
+            <img src="/assets/logo.png" alt="Ethical Bytes Logo" className="h-8 w-8 object-contain" />
             <span className="text-xl font-bold text-white">Ethical Bytes</span>
           </Link>
 

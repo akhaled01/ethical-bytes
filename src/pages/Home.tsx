@@ -1,40 +1,31 @@
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  Notebook as Robot,
   Brain,
   Shield,
   Heart,
   Star,
-  Sparkles,
 } from "lucide-react";
 
 function Home() {
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
-
   return (
-    <div className="max-w-6xl mx-auto text-center">
+    <div className="relative text-center">
       {/* Hero Banner */}
       <motion.div
-        className="relative h-[500px] -mx-4 mb-16 overflow-hidden"
-        style={{
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity,
-          scale,
-        }}
+        className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
       >
+        <div className="absolute inset-0 bg-[url('/assets/img1.png')] opacity-30 bg-cover bg-center mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0.4)_100%)]"></div>
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-yellow-500/90 via-amber-500/90 to-orange-500/90"
+          className="absolute inset-0 backdrop-blur-sm bg-gradient-to-r from-yellow-500/30 via-amber-500/30 to-orange-500/30"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <div className="h-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center">
+          <div className="h-screen max-w-6xl mx-auto px-4 flex flex-col items-center justify-center">
             <motion.div
               className="mb-8 relative"
               animate={{
@@ -47,21 +38,19 @@ function Home() {
                 ease: "easeInOut",
               }}
             >
-              <Robot className="h-32 w-32 text-white" />
-              <motion.div
-                className="absolute -right-4 -top-4"
+              <motion.img 
+                src="/assets/logo.png" 
+                alt="Ethical Bytes Logo" 
+                className="h-40 w-40 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
                 animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 180, 360],
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "linear",
+                  ease: "easeInOut",
                 }}
-              >
-                <Sparkles className="h-8 w-8 text-yellow-300" />
-              </motion.div>
+              />
             </motion.div>
 
             <motion.div
@@ -102,9 +91,9 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      <div className="px-4">
+      <div className="px-4 max-w-6xl mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-16 px-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ staggerChildren: 0.2 }}
@@ -114,21 +103,21 @@ function Home() {
             icon={<Brain className="w-12 h-12 text-yellow-500" />}
             title="What is AI?"
             description="AI is like a smart computer friend that can learn and help us with tasks. It's important to know how to use it safely!"
-            color="bg-gradient-to-br from-yellow-100 to-amber-200"
+            color="bg-gradient-to-br from-yellow-500/10 to-amber-500/10"
             iconBg="bg-yellow-100"
           />
           <InfoCard
             icon={<Shield className="w-12 h-12 text-amber-500" />}
             title="Stay Safe with AI"
             description="Never share personal information with AI and always have a grown-up nearby when using AI tools."
-            color="bg-gradient-to-br from-amber-100 to-amber-200"
+            color="bg-gradient-to-br from-amber-500/10 to-orange-500/10"
             iconBg="bg-amber-100"
           />
           <InfoCard
             icon={<Heart className="w-12 h-12 text-orange-500" />}
             title="Be Kind & Honest"
             description="Use AI to help others and always be honest about using AI-created content."
-            color="bg-gradient-to-br from-orange-100 to-orange-200"
+            color="bg-gradient-to-br from-orange-500/10 to-red-500/10"
             iconBg="bg-orange-100"
           />
         </motion.div>
@@ -237,6 +226,12 @@ function Home() {
   );
 }
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+  hover: { scale: 1.05, transition: { duration: 0.2 } }
+};
+
 function InfoCard({
   icon,
   title,
@@ -250,18 +245,30 @@ function InfoCard({
   color: string;
   iconBg: string;
 }) {
+  const [isHovered, _setIsHovered] = React.useState(false);
+
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
-      className={`${color} rounded-xl p-6 shadow-lg border-2 border-opacity-50`}
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      whileHover="hover"
+      viewport={{ once: true }}
+      className={`${color} rounded-xl p-8 shadow-lg transition-all duration-300 hover:shadow-2xl relative overflow-hidden backdrop-blur-sm border border-white/10 group`}
     >
-      <div
-        className={`${iconBg} w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <motion.div
+        className={`${iconBg} w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300`}
+        animate={isHovered ? {
+          rotate: [0, 10, -10, 0],
+          scale: [1, 1.1, 1.1, 1],
+        } : {}}
+        transition={{ duration: 0.5 }}
       >
         {icon}
-      </div>
-      <h3 className="text-xl font-bold mb-3">{title}</h3>
-      <p className="text-gray-700">{description}</p>
+      </motion.div>
+      <h3 className="text-2xl font-bold mb-3 text-white/90 group-hover:text-white transition-colors duration-300">{title}</h3>
+      <p className="text-white/70 group-hover:text-white/90 transition-colors duration-300 leading-relaxed">{description}</p>
     </motion.div>
   );
 }
@@ -276,17 +283,25 @@ function LearningPoint({
   description: string;
 }) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      className="flex items-start gap-4 bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md"
+    <motion.div 
+      className="p-4 rounded-lg bg-white/50 backdrop-blur-sm"
+      whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+      whileTap={{ scale: 0.98 }}
     >
-      <div className="bg-gradient-to-br from-yellow-100 to-orange-100 p-3 rounded-full">
-        {icon}
-      </div>
-      <div>
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-700">{description}</p>
-      </div>
+      <motion.div 
+        className="flex items-center mb-2"
+        whileHover={{ x: 5 }}
+      >
+        <motion.div 
+          className="mr-3"
+          whileHover={{ rotate: 360 }}
+          transition={{ duration: 0.5 }}
+        >
+          {icon}
+        </motion.div>
+        <h3 className="text-lg font-semibold">{title}</h3>
+      </motion.div>
+      <p className="text-gray-700">{description}</p>
     </motion.div>
   );
 }
@@ -300,17 +315,53 @@ function FeatureCard({
   description: string;
   imageUrl: string;
 }) {
+  const [isHovered, setIsHovered] = React.useState(false);
+
   return (
     <motion.div
-      whileHover={{ scale: 1.03 }}
-      className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform"
+      className="relative overflow-hidden rounded-xl group cursor-pointer"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
-      <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600 mb-2">
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"
+        animate={{
+          opacity: isHovered ? 0.9 : 0.7,
+        }}
+        transition={{ duration: 0.3 }}
+      />
+      <motion.img
+        src={imageUrl}
+        alt={title}
+        className="w-full h-64 object-cover"
+        animate={{
+          scale: isHovered ? 1.1 : 1,
+        }}
+        transition={{ duration: 0.4 }}
+      />
+      <div className="absolute inset-0 z-20 p-6 flex flex-col justify-end text-white">
+        <motion.h3 
+          className="text-2xl font-bold mb-2"
+          animate={{
+            y: isHovered ? -5 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+        >
           {title}
-        </h3>
-        <p className="text-gray-700">{description}</p>
+        </motion.h3>
+        <motion.p 
+          className="text-white/90"
+          initial={{ opacity: 0.8, y: 20 }}
+          animate={{
+            opacity: isHovered ? 1 : 0.8,
+            y: isHovered ? 0 : 20,
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          {description}
+        </motion.p>
       </div>
     </motion.div>
   );

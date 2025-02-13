@@ -54,9 +54,12 @@ function Game() {
     "correct" | "incorrect" | null
   >(null);
   const [streak, setStreak] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [questionCount, setQuestionCount] = useState(1);
 
   const handleDrop = (category: "responsible" | "irresponsible") => {
-    if (!currentBehavior) return;
+    if (!currentBehavior || isLoading || questionCount > 6) return;
+    setIsLoading(true);
 
     const isCorrect = currentBehavior.correct === category;
     setShowFeedback(isCorrect ? "correct" : "incorrect");
@@ -70,17 +73,21 @@ function Game() {
 
     setTimeout(() => {
       setShowFeedback(null);
-      if (remainingBehaviors.length === 0) {
+      setQuestionCount(prev => prev + 1);
+      if (remainingBehaviors.length === 0 || questionCount >= 6) {
         setGameComplete(true);
         setCurrentBehavior(null);
       } else {
         setCurrentBehavior(remainingBehaviors[0]);
         setRemainingBehaviors(remainingBehaviors.slice(1));
       }
+      setIsLoading(false);
     }, 1000);
   };
 
   const resetGame = () => {
+    setQuestionCount(1);
+    setIsLoading(false);
     setScore(0);
     setStreak(0);
     setCurrentBehavior(behaviors[0]);
@@ -202,6 +209,7 @@ function Game() {
               onDrop={() => handleDrop("responsible")}
               color="bg-gradient-to-br from-yellow-100 to-amber-100"
               borderColor="border-yellow-200"
+              disabled={isLoading}
             />
 
             <DropZone
@@ -210,6 +218,7 @@ function Game() {
               onDrop={() => handleDrop("irresponsible")}
               color="bg-gradient-to-br from-orange-100 to-red-100"
               borderColor="border-orange-200"
+              disabled={isLoading}
             />
           </div>
         </div>
@@ -224,19 +233,21 @@ function DropZone({
   onDrop,
   color,
   borderColor,
+  disabled,
 }: {
   title: string;
   icon: React.ReactNode;
   onDrop: () => void;
   color: string;
   borderColor: string;
+  disabled?: boolean;
 }) {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className={`${color} rounded-xl p-8 border-2 ${borderColor} cursor-pointer text-center transition-all duration-200`}
-      onClick={onDrop}
+      className={`${color} rounded-xl p-8 border-2 ${borderColor} ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} text-center transition-all duration-200`}
+      onClick={disabled ? undefined : onDrop}
     >
       <motion.div
         className="flex flex-col items-center gap-4"

@@ -128,7 +128,6 @@ function FloatingAvatar() {
         }
         transition={{
           duration: 1,
-          repeat: Infinity,
           ease: "easeInOut",
         }}
         className="absolute -top-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap"
@@ -139,64 +138,26 @@ function FloatingAvatar() {
       </motion.div>
 
       <div className="relative w-16 h-16 cursor-grab active:cursor-grabbing">
-        {/* Main Robot Body */}
-        <div className="w-16 h-16 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full relative overflow-hidden border-2 border-white shadow-lg">
-          {/* Face */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            {/* Eyes */}
-            <div className="flex items-center space-x-3">
-              <motion.div
-                animate={{
-                  scale: isDragging ? [1, 1.2, 1] : 1,
-                }}
-                transition={{ repeat: Infinity, duration: 0.5 }}
-                className="w-2.5 h-2.5 bg-white rounded-full"
-              />
-              <motion.div
-                animate={{
-                  scale: isDragging ? [1, 1.2, 1] : 1,
-                }}
-                transition={{ repeat: Infinity, duration: 0.5 }}
-                className="w-2.5 h-2.5 bg-white rounded-full"
-              />
-            </div>
-          </div>
-          {/* Smile */}
-          <motion.div
-            animate={{
-              scaleX: isDragging ? 1.2 : 1,
-              y: isDragging ? 2 : 0,
-            }}
-            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-white rounded-full border-t-0"
-          />
-        </div>
-
-        {/* Antenna */}
-        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-          <div className="w-2 h-3 bg-white rounded-full" />
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 1,
-              ease: "easeInOut",
-            }}
-            className="w-3 h-3 bg-blue-300 rounded-full -mt-1"
-          />
-        </div>
-
-        {/* Small Decorative Circles */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-          className="absolute inset-0"
-        >
-          <div className="absolute top-1/2 -left-1 w-3 h-3 bg-blue-300 rounded-full border border-white" />
-          <div className="absolute top-1/2 -right-1 w-3 h-3 bg-blue-300 rounded-full border border-white" />
-        </motion.div>
+        <motion.img
+          src="/assets/logo.png"
+          alt="Ethical Bytes Logo"
+          className="w-full h-full object-contain"
+          animate={{
+            scale: isDragging ? [1, 1.2, 1] : 1,
+          }}
+          transition={{ repeat: Infinity, duration: 0.5 }}
+        />
       </div>
+
+      {/* Small Decorative Circles */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+        className="absolute inset-0"
+      >
+        <div className="absolute top-1/2 -left-1 w-3 h-3 bg-blue-300 rounded-full border border-white" />
+        <div className="absolute top-1/2 -right-1 w-3 h-3 bg-blue-300 rounded-full border border-white" />
+      </motion.div>
     </motion.div>
   );
 }
